@@ -5,19 +5,22 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@ToString
 @Builder
-@ToString()
-public class Author {
-
+@Entity
+public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName;
-    private String lastName;
-    @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
-    Set<Book> books;
+    private String name;
+    private String addressLine1;
+    private String city;
+    private String state;
+    private String zip;
+
+    @OneToMany
+    private Set<Book> books;
 }
